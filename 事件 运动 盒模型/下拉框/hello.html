@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+#ul{width:300px ;height:300px ;border: 1px solid seagreen;display: none;}
+li{list-style: none;}
+.active{background: firebrick;color: #fff;}
+</style>
+<body>
+    <input type="text" id="txt">
+    <ul id="ul"></ul>
+    <script>
+        let ul = document.getElementById('ul');
+        let txt = document.getElementById('txt');
+        let arr = ['亲历习近平：“China, Good!”','十字路口的中国引领','携手共建更PEC上的中国声音',
+        '被抓时正在医院就诊','安倍跪了,但悄悄换了'];
+        let temp = '';
+        // arr.forEach((e,i)=>{
+        // temp += `<li class="${i==0?'active':''}">${e}</li>`;//定义li标签里面内容为arr[i],且为第一个li标签设置样式
+        // })
+        for (let i = 0; i < arr.length; i++) {
+            temp += '<li>'+arr[i]+'</li>';//字符串拼接
+            //temp += `<li class="${i == 0?'active':''}">'${arr[i]}'</li>`;//模板字符串   
+        }
+        ul.innerHTML = temp;
+        lis = document.getElementsByTagName('li');
+        let li = lis[0];
+        li.className = 'active';
+        txt.onclick =  function () {
+            ul.style.display = 'block';
+        }
+        document.ondbclick =  function () {
+            ul.style.display = 'none';
+        }
+        for (let i = 0; i < arr.length; i++) {
+            lis[i].onclick = function () {
+            li.className = '';//在变量li中定义一个className
+            lis[i].className = 'active';
+            li = lis[i];//重要！调用每个li标签点击之后使其className为空
+            j = i;
+            txt.value = lis[i].innerHTML;
+            ul.style.display = 'none';
+        }   
+        }
+        let j = 0;
+        txt.onkeydown = function (ev) {
+                switch (ev.keyCode) {
+                    case 38:
+                        j--;
+                        if (j<0) {
+                            j = arr.length - 1;
+                        }
+                        li.className = '';
+                        lis[j].className = 'active';
+                        li = lis[j];
+                        break;
+                    case 40:
+                        j++;
+                        j%=arr.length;
+                        li.className = '';
+                        lis[j].className = 'active';
+                        li = lis[j];
+                        break;
+                    case 13:
+                        txt.value = lis[j].innerHTML;
+                        ul.style.display = 'none';
+                        break;
+                }
+            }
+        console.log(lis[0])
+        //console.log(ul.childNodes[0])
+        console.log(temp)
+        // arr = [1,2,3,4]
+        // for (let i = 0; i < arr.length; i++) {
+        //     console.log(arr[i])
+        // }
+        
+        // arr.forEach(element => {
+        //     console.log(element)
+        // });
+        //'use strict'
+        //let [x,y=2] = [1,null]
+        //let [x,y] = [1]
+        // function f() {
+        //     console.log('fgfgf')
+        // }
+        // let [x=f(),y] = [undefined]
+        // console.log(x,y)
+    //     var a =  ()=>{alert('dd')}
+    //   a()
+      //console.log(a())
+    
+    //let reg = /^[19]$/
+    //let reg = /^.$/
+    //let reg = /^[12-65]$/  //1||2-6||5
+    //console.log(reg.test(9))
+   
+    // 获取18-65数字年龄的人
+    // let reg = /^((1[89])|([2-5]\d)|(6[0-5]))$/
+    // console.log(reg.test(199))
+
+    // reg = /^([a-z])([a-z])\2\1$/ //分组引用，\1,\2引用第一个分组和第二个分组不仅规则一样，内容也要一样
+    // console.log(reg.test('oppo'))
+    
+    // let reg = /19[0-9][0-9]|20[0-1][0-9]/
+    // console.log(reg.test(2019))
+    
+    // let str = 'zhufeng2018peixun2019yangfan2020qihang2021'
+    // let reg = /\d+/g
+    // //console.log(str.match(reg))
+    // RegExp.prototype.myExecAll = function (str) {
+    //     let result = [];
+    //     valAry = this.exec(str)
+    //     while (valAry) {
+    //         result.push(valAry[0])
+    //         valAry = this.exec(str)
+    //     }
+    //     return result
+    // }
+    // console.log(reg.myExecAll(str))
+
+
+    </script>
+  
+</body>
+</html>
+

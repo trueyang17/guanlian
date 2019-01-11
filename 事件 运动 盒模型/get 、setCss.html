@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #box{width: 400px;height: 400px;background: gray}
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        var oBox = document.getElementById('box');
+        oBox.onclick = function () {
+            setCss(oBox,'width',200);
+            setCss(oBox,'height',200);
+        }
+        function setCss(curEle,attr,val) {
+            var reg = /^(width|heigt|top|left|right|bottom)$/;
+            if (reg.test(attr)) {
+                if (typeof val === 'Number') {
+                    val = val + 'px';
+                }
+            }
+            curEle
+        }
+    </script>
+</body>
+</html>

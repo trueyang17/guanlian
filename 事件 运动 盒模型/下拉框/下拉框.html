@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	ul{width: 240px;height: 300px;display: none;}
+	li{list-style: none;}
+	li.active{background: firebrick;color: #fff;}
+</style>
+<body>
+	<input type="text" id="txt">
+	<ul id="ul"></ul>
+	<script>
+		let arr = ['规范化规范购房','过在Element的原型上','增加data方法来实现DOM扩',
+		'gtre国防部官方报告','共和国yhgyuyhy','规范北国风光丰富的']
+		let temp = '';
+		arr.forEach((e,i) => {
+			temp += `<li class="${i == 0?'active':''}">${e}</li>`}
+			);
+		ul.innerHTML = temp;
+		txt.onfocus = function () {
+			ul.style.display = 'block';
+		}
+		let lis = Array.from(document.getElementsByTagName('li'));
+		let li = lis[0];
+		li.className = 'active';
+		lis.forEach((e,i) => {
+			e.onclick = function () {
+				let j = i;
+				li.className = '';
+				e.className = 'active';
+				txt.value = e.innerHTML;
+				li = e;
+				ul.style.display = 'none'
+			}
+		});
+		document.oncontextmenu = function () {
+			ul.style.display = 'none';
+		}
+		let j = 0;
+		txt.onkeydown = function (ev) {
+			switch (ev.keyCode) {
+				case 38:
+					j--;//
+					if (j<0) {
+						j = arr.length - 1;
+					}
+					li.className = '';
+					lis[j].className = 'active';
+					li = lis[j];
+					break;
+				case 40:
+					j++;
+					j %= arr.length;
+					li.className = '';
+					lis[j].className = 'active';
+					li = lis[j];
+					break;
+				case 13:
+					txt.value = lis[j].innerHTML;
+					ul.style.display = 'none'					
+					break;
+			}
+		}
+		txt.onfocus = function () {
+			ul.style.display = 'block';
+		}
+	</script>
+
+	<script>
+		// const a = document.getElementById('demo');
+		// let arr = [1,2,3,4];
+		// let sum = 0;
+		// arr.forEach(e =>{
+		// 	console.log(e.target);
+		// 	a.innerHTML = sum += e;
+		// });
+		
+		// var arr = [1,2,3,4];
+		// var sum = 0;
+		// arr.forEach(function(e,index,array){
+		// 	//array[index] == value;    //结果为true
+		// 	sum += e;  
+		// 	});
+		// console.log(sum);    //结果为 10
+		
+		function getA() {
+			return this.a
+		}
+		var obj = {a:3}
+		console.log(getA.call(obj))
+
+		
+	</script>
+</body>
+</html>

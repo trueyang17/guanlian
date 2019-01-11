@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="css/reset.min.css"> -->
+    <style>
+        *{margin: 0;padding: 0;}
+        a{text-decoration: none}
+        li{list-style: none;}
+        html,body{background:#F4F4F4;}
+        .content{margin: 30px auto;width: 1200px;}
+         .content .header{width: 98%;height: 50px;background: #fff;font-size: 18px;margin: 30px auto;
+        line-height: 50px}
+        span{margin-left: 20px;float: left;}
+        a:hover{color: red;}
+        .content .header a{height: 50px;margin-right: 20px ;float: left;
+            display: inline-block;}   
+        .content .header a .up{display: inline-block;width: 0px;height: 2px; margin-bottom: 6px;
+            border-color: transparent transparent  #666; border-width: 5px;border-style: solid;}
+        .content .header a .bg{display: inline-block;width: 0px;height: 2px; margin-bottom: 6px;
+            border-color: transparent transparent  red; border-width: 5px;border-style: solid;}
+         /*vertical-align: text-top vertical-align属性表示文本与块元素垂直对其方式不可和float浮动同时出现 */
+        .content .header a .down{display: inline-block;width: px;height: 1px;margin-left: -15.5px;
+            margin-bottom: -8px;
+             border-color:#666 transparent transparent ; border-width: 5px;border-style: solid;} 
+        .content .header a .bg{display: inline-block;width: px;height: 1px;margin-left: -15.5px;
+            margin-bottom: -8px;
+             border-color:red transparent transparent ; border-width: 5px;border-style: solid;}  
+       .content #list{overflow: hidden;}
+       .content #list li{margin: 0 15px 15px 0;width: 205px;height: 310px;padding: 10px;float: left;
+            background: white;}    
+        .content  #list li img{width: 100%;}
+        #list li span{ display: block;font-size: 14px; color:#666;height: 30px;width: 205px;}
+    </style>     
+
+</head>
+<body>
+    <div class="content" >
+        <div class="header">
+           <span>排序</span>
+           <a href="javascript:;">上架时间
+                <i class="up"></i>
+                <i class="down"></i>
+           </a>
+           <a href="javascript:;" >热度
+                <i class="up"></i>
+                <i class="down"></i>
+           </a>
+           <a href="javascript:;">价格
+                <i class="up"></i>
+                <i class="down"></i>
+           </a> 
+        </div>
+        <ul id="list"></ul>    
+    </div>
+    <script>
+        var list = document.getElementById("list");
+        var oLis = list.getElementsByTagName("li");
+        var goodsList = null;
+        var xhr = new XMLHttpRequest();// 1、创建ajax实例
+        xhr.open("GET", "./json/product.json", false);//2
+        xhr.onreadystatechange = function () {
+            // xhr.readyState == 4; // 请求完成了
+            // xhr.status == 200; 请求成功
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                goodsList = xhr.responseText; // 请求结果数据
+            }
+        }; 
+        xhr.send();//3.
+
+        goodsList = JSON.parse(goodsList);// 转成对象 
+        var str = "";
+        for (var i = 0; i < goodsList.length; i++) {
+            var goods = goodsList[i];
+            str += `<li data-time=${goods.time} data-hot=${goods.hot} data-price=${goods.price}>
+                        <img src="${goods.img}" alt="">
+                        <span>${goods.title}</span>
+                        <span>时间：${goods.time}</span>
+                        <span>价格：${goods.price}</span>
+                        <span>热度：${goods.hot}</span>
+                    </li>`;
+        }
+        list.innerHTML = str;
+        
+    </script>
+</body>
+</html>

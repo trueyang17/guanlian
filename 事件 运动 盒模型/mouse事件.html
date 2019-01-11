@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    div{height:3333px ;width: 800px;border:10px solid red}
+    #d2{height:600px ;width: 400px;margin: 200px;border:10px solid red}
+    </style>
+</head>
+<body >
+    <div id="div">
+        <div id="d2"></div>
+    </div>
+    <script>
+        div.onmousemove = function(e){
+            e = e || window.event;
+            console.log('e.clientX:'+e.clientX+" e.clientY:"+e.clientY);//客户区坐标不随页面滚动改变
+            console.log('e.pageX:'+e.pageX+" e.pageY:"+e.pageY);//pageY随着下拉页面改变
+            console.log('e.offsetX:'+e.offsetX+" e.offsetY:"+e.offsetY);
+		    console.log('e.layerX:'+e.layerX, 'e.layerY:'+e.layerY);
+		    console.log('e.x:'+e.x, 'e.y:'+e.y);
+            console.log('e.screenX:'+e.screenX, ' e.screenY:'+e.screenY);
+        }
+
+    </script>
+</body>
+</html>

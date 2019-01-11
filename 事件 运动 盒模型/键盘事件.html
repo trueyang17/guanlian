@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // document.onkeydown = function () {
+        //     console.log('您按下了键盘')
+        // }
+        // document.onkeyup = function () {
+        //     console.log('您按松开了键盘')
+        // }
+        // document.onkeypress = function () {
+        //     console.log('您按下了键盘')
+        // }
+
+        document.onkeydown = function (ev) {
+            ev.shiftKey == true?console.log('您按下了shift键'):console.log('您没有按下shift键')
+            ev.ctrlKey == true?console.log('您按下了ctrl键'):console.log('您没有按下Ctrl键')
+            ev.altKey == true?console.log('您按下了alt键'):console.log('您没有按下alt键')
+        }
+
+        document.onkeyup = function (ev) {
+            switch (ev.keyCode) {
+            case 37:
+            console.log('您按下了左键');
+                break;
+            case 38:
+            console.log('您按下了上键');
+                break;
+            case 39:
+            console.log('您按下了右键');
+                break;
+            case 40:
+            console.log('您按下了下键');
+                break;
+            case 13:
+            console.log('您按下了Enter键');
+                break;
+            case 48:
+            console.log('您按下了0键');
+                break;
+                case 49:
+            console.log('您按下了1键');
+                break;
+                case 65:
+            console.log('您按下了a键');
+                break;    
+            default:
+             console.log('您按了其他键');
+        }
+        }
+        
+    </script>
+</body>
+</html>
